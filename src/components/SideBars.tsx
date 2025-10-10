@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
@@ -6,20 +7,25 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from '@/components/ui/in
 import { Kbd } from '@/components/ui/kbd'
 import { SearchIcon } from 'lucide-react'
 import {AppSidebar} from '@/components/AppSidebar'
+import { Button } from './ui/button'
+import { AppSidebar2 } from './AppSidebar2'
 
 export default function Sidebars({
   children
 }: {
   children: React.ReactNode
 }) {
+
+    const [leftOpen, setLeftOpen] = React.useState(false);
+  const [rightOpen, setRightOpen] = React.useState(false);
   return (
-    <div>
-       <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset className="flex h-screen flex-col">
-              <header className=" sticky-top z-10 border-b px-4 py-5 flex items-center justify-between">
+    <SidebarProvider open={rightOpen} onOpenChange={setRightOpen}>
+      <SidebarProvider open={leftOpen} onOpenChange={setLeftOpen}>
+        <AppSidebar />
+        <SidebarInset>
+           <header className=" sticky-top z-10 border-b px-4 py-5 flex items-center justify-between">
                 <div className="flex shrink-0 grow items-center gap-2">
-                  <SidebarTrigger className="-ml-1" />
+            <Button variant="ghost" size="icon" onClick={() => setLeftOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit" width={32} height={32} /></Button>
                   <Image src="/navbar/star.svg" alt="star" className="w-fit" width={100} height={24} />
                   <Breadcrumb>
                     <BreadcrumbList>
@@ -51,20 +57,16 @@ export default function Sidebars({
                   <Image src="/navbar/sun.svg" alt="user" className="w-fit" width={32} height={32} />
                   <Image src="/navbar/timer.svg" alt="timer" className="w-fit" width={32} height={32} />
                   <Image src="/navbar/bell.svg" alt="bell" className="w-fit" width={32} height={32} />
-                  
-                  {/* <Sheet>
-                    <SheetTrigger asChild>
-                      <Image src="/navbar/side.svg" alt="side" className="w-fit cursor-pointer" width={32} height={32} />
-                    </SheetTrigger>
-                    <SheetContent side="right" className="w-80 p-0">
-                      <AppSidebar2 />
-                    </SheetContent>
-                  </Sheet> */}
+                  <Button variant="ghost" size="icon" onClick={() => setRightOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit" width={32} height={32} /></Button>
                 </div>
               </header>
-              <main className="flex-1 overflow-y-auto">{children}</main>
-            </SidebarInset>
-          </SidebarProvider>
-    </div>
-  )
+          <div className="flex justify-between">
+          </div>
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </SidebarInset>
+      </SidebarProvider>
+        <AppSidebar2/>
+    </SidebarProvider>
+  );
 }
+// https://github.com/shadcn-ui/ui/issues/5834
