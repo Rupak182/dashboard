@@ -17,7 +17,7 @@ export default function Sidebars({
 }) {
 
     const [leftOpen, setLeftOpen] = React.useState(false);
-  const [rightOpen, setRightOpen] = React.useState(false);
+  const [rightOpen, setRightOpen] = React.useState(true);
   return (
     <SidebarProvider open={rightOpen} onOpenChange={setRightOpen}>
       <SidebarProvider open={leftOpen} onOpenChange={setLeftOpen}>

@@ -44,7 +44,7 @@ const chartConfig = {
 
 export function AppBarChart() {
   return (
-    <Card className="flex flex-col ">
+    <Card className="flex flex-col bg-transparent border-none shadow-none p-0  ">
       <CardHeader>
         <CardTitle>Projection Vs Actuals</CardTitle>
       </CardHeader>

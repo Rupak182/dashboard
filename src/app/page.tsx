@@ -31,10 +31,10 @@ export default function Home() {
         eCommerce
       </div>
 
-      <div className="grid lg:grid-cols-4 gap-10 mb-20">
-        <div className="bg-primary-foreground p-4 rounded-lg col-span-2">
+      <div className="grid lg:grid-cols-6 gap-4 mb-20">
+        <div className=" p-4 rounded-lg col-span-3">
           <div className=" grid grid-cols-2 gap-4  ">
-            <Card className="">
+            <Card className="bg-[#E3F5FF]">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium">Customers</CardTitle>
               </CardHeader>
@@ -46,7 +46,7 @@ export default function Home() {
                 </span>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-[#F7F9FB] ">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium">Orders</CardTitle>
               </CardHeader>
@@ -58,7 +58,7 @@ export default function Home() {
                 </span>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-[#F7F9FB]">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium">Revenue</CardTitle>
               </CardHeader>
@@ -70,7 +70,7 @@ export default function Home() {
                 </span>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-[#E5ECF6]">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium">Growth</CardTitle>
               </CardHeader>
@@ -84,13 +84,13 @@ export default function Home() {
             </Card>
           </div>
         </div>
-        <div className="bg-primary-foreground p-6 rounded-lg col-span-2">
+        <div className="bg-primary-foreground p-6 rounded-lg col-span-3">
           <AppBarChart />
         </div>
-        <div className="bg-primary-foreground p-4 rounded-lg col-span-3">
+        <div className="bg-primary-foreground p-4 rounded-lg col-span-4">
           <AppLineChart />
         </div>
-        <div className="bg-primary-foreground p-4 rounded-lg ">
+        <div className="bg-primary-foreground p-4 rounded-lg col-span-2">
 
           <Image src="/main/WorldMap.svg" alt="map" width={300} height={300} />
           <div className="space-y-4">
@@ -128,7 +128,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-primary-foreground p-4 rounded-lg col-span-2">
+        <div className="bg-primary-foreground p-4 rounded-lg col-span-4">
           <div className="mb-4">
             <h3 className="text-lg font-semibold">Top Selling Products</h3>
           </div>
@@ -176,6 +176,9 @@ export default function Home() {
           </Table>
         </div>
         <div className="bg-primary-foreground p-4 rounded-lg col-span-2">
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold">Total Sales</h3>
+          </div>
           <AppPieChart />
         </div>
       </div>

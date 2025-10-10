@@ -33,9 +33,9 @@ const chartConfig = {
 
 export function AppLineChart() {
   return (
-    <Card>
+    <Card className="bg-transparent border-none shadow-none p-0">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">Revenue</CardTitle>
+        <CardTitle className="text-lg font-semibold ">Revenue</CardTitle>
         <div className="flex items-center gap-6 mt-2">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#1C1C1C]"></div>
