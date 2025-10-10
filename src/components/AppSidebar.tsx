@@ -1,4 +1,4 @@
-import { Calendar, ChevronDown, Home, Image, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
     Sidebar,
@@ -16,37 +16,39 @@ import {
     SidebarSeparator,
 } from "@/components/ui/sidebar"
 import Link from "next/link"
+import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 // Menu items.
-const items = [
+const dashboardItems = [
     {
-        title: "Home",
-        url: "#",
-        icon: Home,
+        title: "Default",
+        url: "/#",
+        icon: "/sidebar/pie.svg",
+        hasChildren: false,
     },
     {
-        title: "Inbox",
-        url: "#",
-        icon: Inbox,
+        title: "eCommerce",
+        url: "/#",
+        icon: "/sidebar/ecom.svg",
+        hasChildren: true,
     },
     {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar,
+        title: "Projects",
+        url: "/#",
+        icon: "/sidebar/folder.svg",
+        hasChildren: true,
     },
     {
-        title: "Search",
-        url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        title: "Online Courses",
+        url: "/#",
+        icon: "/sidebar/book.svg",
+        hasChildren: true,
     },
 ]
+
 
 
 export function AppSidebar() {
@@ -54,17 +56,24 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarHeader className="py-4">
                 <SidebarMenu>
+                    {/* Section 1 */}
+
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
                             <Link href="/">
-                                {/* <Image src="/logo.svg" alt="logo" width={20} height={20} /> */}
-                                <span className="font-medium">ByeMind</span>
+                                <Avatar>
+                                    <AvatarImage src="/sidebar/avatar.png" />
+                                    <AvatarFallback>AV</AvatarFallback>
+                                </Avatar>
+                                <span className="font-medium">ByeWind</span>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-            <SidebarSeparator />
+
+            {/* Section 2*/}
+
             <SidebarContent>
                 <SidebarGroup >
                     <SidebarGroupContent>
@@ -72,10 +81,10 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <Tabs defaultValue="favourites" className="w-[400px] ">
                                     <TabsList>
-                                        <TabsTrigger  value="favourites">Favourites</TabsTrigger>
-                                        <TabsTrigger   value="recent">Recently</TabsTrigger>
+                                        <TabsTrigger value="favourites">Favourites</TabsTrigger>
+                                        <TabsTrigger value="recent">Recently</TabsTrigger>
                                     </TabsList>
-                                    <TabsContent  value="favourites">
+                                    <TabsContent value="favourites">
                                         <ul className="list-disc pl-5 space-y-1">
                                             <li>Overview</li>
                                             <li>Projects</li>
@@ -91,31 +100,55 @@ export function AppSidebar() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
+                {/* Section 3 */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Dashboards</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenuSub>
-                            <SidebarMenuSubItem>
-                                <SidebarMenuSubButton asChild>
-                                    <Link href="/#">
-                                        Default
-                                    </Link>
-                                </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
+                            {dashboardItems.map((item) => (
+                                <SidebarMenuSubItem key={item.title}>
+                                    {item.hasChildren ? (
+                                        <Collapsible defaultOpen={false} className="group/collapsible">
+                                            <SidebarMenuSubButton asChild>
+                                                <CollapsibleTrigger>
+                                                    <ChevronDown className="transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
+                                                    <Image src={item.icon} alt={item.title} width={20} height={20} />
+                                                    {item.title}
+                                                </CollapsibleTrigger>
+                                            </SidebarMenuSubButton>
+                                            <SidebarMenuSub>
+                                                <CollapsibleContent>
+                                                    {/* Sub-items can be added here */}
+                                                </CollapsibleContent>
+                                            </SidebarMenuSub>
+                                        </Collapsible>
+                                    ) : (
+                                        <SidebarMenuSubButton asChild>
+                                            <Link href={item.url} className="pl-8">
+                                                <Image src={item.icon} alt={item.title} width={20} height={20} />
+                                                {item.title}
+                                            </Link>
+                                        </SidebarMenuSubButton>
+                                    )}
+                                </SidebarMenuSubItem>
+                            ))}
                         </SidebarMenuSub>
                     </SidebarGroupContent>
                 </SidebarGroup>
+
+                {/* Section 4 */}
+
                 <SidebarGroup >
-                    <SidebarGroupLabel>General</SidebarGroupLabel>
+                    <SidebarGroupLabel>Pages</SidebarGroupLabel>
                     <SidebarGroupContent>
-                        <Collapsible defaultOpen className="group/collapsible">
-                            <SidebarMenuSub>
-                                <SidebarMenuSubItem >
+                        <SidebarMenuSub>
+                            <SidebarMenuSubItem >
+                                <Collapsible defaultOpen={false} className="group/collapsible">
                                     <SidebarMenuSubButton asChild>
                                         <CollapsibleTrigger>
                                             <ChevronDown className=" transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
-                                            Collapsable Group
+                                            <Image src="/sidebar/user.svg" alt="user" width={20} height={20} />
+                                            User Profile
                                         </CollapsibleTrigger>
                                     </SidebarMenuSubButton>
                                     <SidebarMenuSub>
@@ -123,87 +156,125 @@ export function AppSidebar() {
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
                                                     <Link href="/#">
-                                                        Web Project
+
+                                                        Overview
                                                     </Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
                                                     <Link href="/#">
-                                                        Mobile Project
+                                                        Projects
                                                     </Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
                                                     <Link href="/#">
-                                                        Desktop Project
+                                                        Campaigns
+                                                    </Link>
+                                                </SidebarMenuSubButton>
+                                            </SidebarMenuSubItem>
+                                            <SidebarMenuSubItem>
+                                                <SidebarMenuSubButton asChild>
+                                                    <Link href="/#">
+                                                        Documents
+                                                    </Link>
+                                                </SidebarMenuSubButton>
+                                            </SidebarMenuSubItem>
+                                            <SidebarMenuSubItem>
+                                                <SidebarMenuSubButton asChild>
+                                                    <Link href="/#">
+                                                        Followers
                                                     </Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                         </CollapsibleContent>
                                     </SidebarMenuSub>
-                                </SidebarMenuSubItem>
-                            </SidebarMenuSub>
-                        </Collapsible>
+                                </Collapsible>
+
+                            </SidebarMenuSubItem>
+
+
+                            <SidebarMenuSubItem >
+                                <Collapsible defaultOpen={false} className="group/collapsible">
+                                    <SidebarMenuSubButton asChild>
+                                        <CollapsibleTrigger>
+                                            <ChevronDown className=" transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
+                                            <Image src="/sidebar/card.svg" alt="account" width={20} height={20} />
+                                            Account
+                                        </CollapsibleTrigger>
+                                    </SidebarMenuSubButton>
+                                    <SidebarMenuSub>
+                                        <CollapsibleContent>
+                                            {/* Add sub items here */}
+                                        </CollapsibleContent>
+                                    </SidebarMenuSub>
+                                </Collapsible>
+
+                            </SidebarMenuSubItem>
+
+
+
+                            <SidebarMenuSubItem >
+                                <Collapsible defaultOpen={false} className="group/collapsible">
+                                    <SidebarMenuSubButton asChild>
+                                        <CollapsibleTrigger>
+                                            <ChevronDown className=" transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
+                                            <Image src="/sidebar/people.svg" alt="corporate" width={20} height={20} />
+                                            Corporate
+                                        </CollapsibleTrigger>
+                                    </SidebarMenuSubButton>
+                                    <SidebarMenuSub>
+                                        <CollapsibleContent>
+                                            {/* Add sub items here */}
+                                        </CollapsibleContent>
+                                    </SidebarMenuSub>
+                                </Collapsible>
+
+                            </SidebarMenuSubItem>
+
+
+
+                            <SidebarMenuSubItem >
+                                <Collapsible defaultOpen={false} className="group/collapsible">
+                                    <SidebarMenuSubButton asChild>
+                                        <CollapsibleTrigger>
+                                            <ChevronDown className=" transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
+                                            <Image src="/sidebar/book_close.svg" alt="blog" width={20} height={20} />
+                                            Blog
+                                        </CollapsibleTrigger>
+                                    </SidebarMenuSubButton>
+                                    <SidebarMenuSub>
+                                        <CollapsibleContent>
+                                            {/* Add sub items here */}
+                                        </CollapsibleContent>
+                                    </SidebarMenuSub>
+                                </Collapsible>
+
+                            </SidebarMenuSubItem>
+
+                            <SidebarMenuSubItem >
+                                <Collapsible defaultOpen={false} className="group/collapsible">
+                                    <SidebarMenuSubButton asChild>
+                                        <CollapsibleTrigger>
+                                            <ChevronDown className=" transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
+                                            <Image src="/sidebar/chat.svg" alt="chat " width={20} height={20} />
+                                            Social
+                                        </CollapsibleTrigger>
+                                    </SidebarMenuSubButton>
+                                    <SidebarMenuSub>
+                                        <CollapsibleContent>
+                                            {/* Add sub items here */}
+                                        </CollapsibleContent>
+                                    </SidebarMenuSub>
+                                </Collapsible>
+
+                            </SidebarMenuSubItem>
+                        </SidebarMenuSub>
                     </SidebarGroupContent>
                 </SidebarGroup>
-                <Collapsible defaultOpen className="group/collapsible">
-                    <SidebarGroup>
-                        <SidebarGroupLabel asChild>
-                            <CollapsibleTrigger>
-                                Collapsable Group
-                                <ChevronDown className="ml-auto transition-transform -rotate-90 group-data-[state=open]/collapsible:rotate-0" />
-                            </CollapsibleTrigger>
-                        </SidebarGroupLabel>
-                        <CollapsibleContent>
-                            <SidebarGroupContent>
-                                <SidebarMenu>
-                                    <SidebarMenuItem>
-                                        <SidebarMenuButton asChild>
-                                            <Link href="/#">
-                                                See All Projects
-                                            </Link>
-                                        </SidebarMenuButton>
-                                        <SidebarMenuSub>
-                                            <SidebarMenuSubItem>
-                                                <SidebarMenuSubButton asChild>
-                                                    <Link href="/#">
-                                                        Add Project
-                                                    </Link>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
-                                            <SidebarMenuSubItem>
-                                                <SidebarMenuSubButton asChild>
-                                                    <Link href="/#">
-                                                        Add Category
-                                                    </Link>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
-                                        </SidebarMenuSub>
-                                    </SidebarMenuItem>
-                                </SidebarMenu>
-                            </SidebarGroupContent>
-                        </CollapsibleContent>
-                    </SidebarGroup>
-                </Collapsible>
-                <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
-                    <SidebarGroupContent>
-                        <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
+
 
             </SidebarContent>
         </Sidebar>
