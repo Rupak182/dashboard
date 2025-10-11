@@ -37,11 +37,11 @@ export function AppLineChart() {
     },
     previousWeek: { 
       label: "Previous Week", 
-      color: theme === 'dark' ? "#A8C5DA" : "#A8C5DA" 
+      color:  "#A8C5DA" 
     },
   } satisfies ChartConfig
   return (
-    <Card className="bg-transparent border-none shadow-none p-0">
+    <Card  className="bg-transparent border-none shadow-none p-0">
       <CardHeader>
         <CardTitle className="text-lg font-semibold ">Revenue</CardTitle>
         <div className="flex items-center gap-6 mt-2">
@@ -95,14 +95,14 @@ export function AppLineChart() {
             
             <Line
               dataKey="currentWeek"
-              stroke={chartConfig.currentWeek.color} 
+              stroke={theme === 'dark' ? "#C6C7F8" : "#1C1C1C" } 
               strokeWidth={3}
               dot={false}
               type="monotone"
             />
             <Line
               dataKey="previousWeek"
-              stroke={chartConfig.previousWeek.color} 
+              stroke="#A8C5DA" 
               strokeWidth={3}
               dot={false}
               type="monotone"

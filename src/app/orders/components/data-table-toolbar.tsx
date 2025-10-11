@@ -37,7 +37,7 @@ export function DataTableToolbar<TData>({
         <div className="flex items-center  justify-between">
             <div className="flex items-center gap-2">
                 <Button variant="ghost" size="icon">
-                    <Image src="/orders/plus.svg" alt="Logo" width={20} height={20} />
+                    <Image src="/orders/plus.svg" alt="Logo" width={20} height={20} className="dark:invert" />
                 </Button>
 
                 <DataTableViewOptions table={table} />
@@ -46,7 +46,7 @@ export function DataTableToolbar<TData>({
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="h-8">
-                            <Image src="/orders/updown.svg" alt="sort_logo" width={20} height={20} />
+                            <Image src="/orders/updown.svg" alt="sort_logo" width={20} height={20} className="dark:invert" />
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" >

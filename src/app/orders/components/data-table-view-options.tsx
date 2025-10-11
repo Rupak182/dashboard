@@ -26,7 +26,7 @@ export function DataTableViewOptions<TData>({
                     variant="ghost"
                     size="icon"
                 >
-                    <Image src="/orders/lines.svg" alt="lines" width={20} height={20} />
+                    <Image src="/orders/lines.svg" alt="lines" width={20} height={20} className="dark:invert" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[150px]">

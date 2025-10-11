@@ -1,4 +1,3 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -7,161 +6,133 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 
-// Menu items.
-const items = [
+// Notifications data
+const notifications = [
+  
   {
-    title: "Home",
-    url: "#",
-    icon: Home,
+    id: 1,
+    icon: "/notification/BugBeetle.svg",
+    title: "You have bug that needs...",
+    time: "12 hours ago",
+    bgColor: "bg-[#E3F5FF]"
+  },
+
+  {
+    id: 2,
+    icon: "/notification/user.svg",
+    title: "New User Registered",
+    time: "59 minutes ago",
+    bgColor: "bg-[#E5ECF6]"
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    id: 3,
+    icon: "/notification/BugBeetle.svg",
+    title: "You have bug that needs...",
+    time: "Just Now",
+    bgColor: "bg-[#E3F5FF]"
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+    id: 4,
+    icon: "/notification/Broadcast.svg",
+    title: "Andi Lane subscribed to you",
+    time: "Today, 11:59 AM",
+    bgColor: "bg-[#E5ECF6]"
+  }
 ]
+
+// Activities data
+const activities = [
+  {
+    id: 1,
+    avatar: "/notification/p1.png",
+    title: "You have bug that needs...",
+    time: "Just now"
+  },
+  {
+    id: 2,
+    avatar: "/notification/p2.png",
+    title: "Released a new version",
+    time: "59 minutes ago"
+  },
+  {
+    id: 3,
+    avatar: "/notification/p3.png",
+    title: "Submitted a bug",
+    time: "12 hours ago"
+  },
+  {
+    id: 4,
+    avatar: "/notification/p4.png",
+    title: "Modified A data in Page X",
+    time: "Today, 11:59 AM"
+  },
+  {
+    id: 5,
+    avatar: "/notification/p5.png",
+    title: "Deleted a page in Project X",
+    time: "Feb 2, 2023"
+  }
+]
+
+// Contacts data
+const contacts = [
+  { id: 1, avatar: "/notification/p6.png", name: "Natali Craig" },
+  { id: 2, avatar: "/notification/p7.png", name: "Drew Cano" },
+  { id: 3, avatar: "/notification/p8.png", name: "Orlando Diggs" },
+  { id: 4, avatar: "/notification/p9.png", name: "Andi Lane" },
+  { id: 5, avatar: "/notification/p10.png", name: "Kate Morrison" },
+  { id: 6, avatar: "/notification/p11.png", name: "Koray Okumus" }
+]
+
+
 
 export function AppSidebar2() {
   return (
     <Sidebar side="right" >
       <SidebarContent className="p-3">
         <SidebarGroup>
-          <SidebarGroupLabel>Notification</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-primary text-base font-semibold mb-3 px-0">Notifications</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="flex gap-3">
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="p-2 rounded-md bg-[#E5ECF6]">
-                      <Image src="/notification/user.svg" alt="user" width={40} height={40} className="w-fit" />
+              {notifications.map((notification) => (
+                <SidebarMenuItem key={notification.id}>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className={`p-2 rounded-md ${notification.bgColor}`}>
+                        <Image src={notification.icon} alt="notification" width={40} height={40} className="w-fit" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-sm">{notification.title}</div>
+                      <div className="text-sm text-muted-foreground">{notification.time}</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="text-sm">New User Registered</div>
-                    <div className="text-sm text-muted-foreground">59 minutes ago</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="p-2 rounded-md bg-[#E3F5FF]">
-                      <Image src="/notification/BugBeetle.svg" alt="user" width={40} height={40} className="w-fit" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-sm">You have bug that needs...</div>
-                    <div className="text-sm text-muted-foreground">12 hours ago</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="p-2 rounded-md bg-[#E3F5FF]">
-                      <Image src="/notification/BugBeetle.svg" alt="user" width={40} height={40} className="w-fit" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-sm">You have bug that needs...</div>
-                    <div className="text-sm text-muted-foreground">Just Now</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="p-2 rounded-md bg-[#E5ECF6]">
-                      <Image src="/notification/Broadcast.svg" alt="user" width={40} height={40} className="w-fit" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-sm">Andi Lane subscribed to you</div>
-                    <div className="text-sm text-muted-foreground">Today, 11:59 AM</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
 
         <SidebarGroup>
-          <SidebarGroupLabel>Activities</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-primary text-base font-semibold mb-3 px-0">Activities</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="flex gap-3">
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p1.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div className="text-sm">You have bug that needs...</div>
-                    <div className="text-sm text-muted-foreground">Just now</div>
+              {activities.map((activity) => (
+                <SidebarMenuItem key={activity.id}>
+                  <div className="flex items-center gap-3">
+                    <Image src={activity.avatar} alt="user" width={40} height={40} className="w-6" />
+                    <div>
+                      <div className="text-sm">{activity.title}</div>
+                      <div className="text-sm text-muted-foreground">{activity.time}</div>
+                    </div>
                   </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p2.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div className="text-sm">Released a new version</div>
-                    <div className="text-sm text-muted-foreground">59 minutes ago</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p3.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div className="text-sm">Submitted a bug</div>
-                    <div className="text-sm text-muted-foreground">12 hours ago</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p4.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div className="text-sm">Modified A data in Page X</div>
-                    <div className="text-sm text-muted-foreground">Today, 11:59 AM</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p5.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div className="text-sm">Deleted a page in Project X</div>
-                    <div className="text-sm text-muted-foreground">Feb 2, 2023</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -169,66 +140,20 @@ export function AppSidebar2() {
 
 
         <SidebarGroup>
-          <SidebarGroupLabel>Contacts</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-primary text-base font-semibold mb-3 px-0">Contacts</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="flex gap-3">
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p6.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Natali Craig</div>
+            <SidebarMenu className="flex gap-4">
+              {contacts.map((contact) => (
+                <SidebarMenuItem key={contact.id}>
+                  <div className="flex items-center gap-4">
+                    <Image src={contact.avatar} alt="user" width={40} height={40} className="w-6" />
+                    <div>
+                      <div>{contact.name}</div>
+                    </div>
                   </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p7.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Drew Cano</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p8.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Orlando Diggs</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p9.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Andi Lane</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p10.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Kate Morrison</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem >
-                <div className="flex items-center gap-3">
-                  <Image src="/notification/p11.png" alt="user" width={40} height={40} className="w-6" />
-                  <div>
-                    <div >Koray Okumus</div>
-                  </div>
-                </div>
-              </SidebarMenuItem>
-
-
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
-
-
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
