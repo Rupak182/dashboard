@@ -19,8 +19,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { useTheme } from "next-themes"
 
-export const description = "A stacked bar chart with a legend"
 
 const chartData = [
   { month: "January", Projection: 20, Actual: 0 },
@@ -31,25 +31,28 @@ const chartData = [
   { month: "June", Projection: 25, Actual: 22 },
 ]
 
-const chartConfig = {
-  Projection: {
-    label: "Projection",
-    color: "#A8C5DA",
-  },
-  Actual: {
-    label: "Actual",
-    color: "#CFDFEA",
-  },
-} satisfies ChartConfig
+
 
 export function AppBarChart() {
+  const { theme } = useTheme()
+  
+  const chartConfig = {
+    Projection: {
+      label: "Projection",
+      color: theme === "dark" ? "#A8C5DA" : "#A8C5DA",
+    },
+    Actual: {
+      label: "Actual",
+      color: theme === "dark" ? "#677680" : "#CFDFEA",
+    },
+  } satisfies ChartConfig
   return (
     <Card className="flex flex-col bg-transparent border-none shadow-none p-0  ">
       <CardHeader>
         <CardTitle>Projection Vs Actuals</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <ChartContainer  config={chartConfig} className="h-full">
+        <ChartContainer config={chartConfig} className="h-full">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -60,12 +63,12 @@ export function AppBarChart() {
               tickFormatter={(value) => value.slice(0, 3)}
             />
 
-               <YAxis
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            tickFormatter={(value) => `${value}M`}
-          />
+            <YAxis
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => `${value}M`}
+            />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <Bar
               dataKey="Projection"
@@ -82,7 +85,7 @@ export function AppBarChart() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-     
+
     </Card>
   )
 }

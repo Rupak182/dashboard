@@ -39,9 +39,9 @@ export function DataTablePagination<TData>({
             size="icon"
             className={cn(
               "h-8 w-8",
-              currentPage === i + 1 
-                ? "bg-slate-200 text-slate-800 hover:bg-slate-300" 
-                : "text-slate-600 hover:bg-slate-100"
+              currentPage === i + 1
+                ? "bg-muted text-primary hover:bg-muted/80"
+                : "text-primary hover:bg-muted/50"
             )}
             onClick={() => table.setPageIndex(i)}
           >

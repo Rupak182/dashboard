@@ -6,22 +6,23 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
+   
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+// Updated type to match the new data structure
 export type Payment = {
-    id: string;
-    amount: number;
-    username: string;
-    email: string;
-    status: "pending" | "processing" | "success" | "failed";
+    orderId: string;
+    user: string;
+    project: string;
+    address: string;
+    date: string;
+    status: "In Progress" | "Complete" | "Pending" | "Approved" | "Rejected";
+    avatar: string; // p1.png to p5.png
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -47,40 +48,82 @@ export const columns: ColumnDef<Payment>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "username",
-        header: "User",
+        accessorKey: "orderId",
+        header: () => <div className="text-muted-foreground font-medium">Order ID</div>,
     },
-
     {
-        accessorKey: "email",
-        header: "Email",
+        accessorKey: "user",
+        header: () => <div className="text-muted-foreground font-medium">User</div>,
+        cell: ({ row }) => {
+            const user = row.getValue("user");
+            const avatar = row.original.avatar;
+            return (
+                <div className="flex items-center gap-3">
+                    <Image
+                        src={`/orders/${avatar}`}
+                        alt={user as string}
+                        width={32}
+                        height={32}
+                        className="rounded-full"
+                    />
+                    <span className="text-primary font-medium">{user as string}</span>
+                </div>
+            );
+        },
     },
-
+    {
+        accessorKey: "project",
+        header: () => <div className="text-muted-foreground font-medium">Project</div>,
+        cell: ({ row }) => (
+            <span className="text-gray-900">{row.getValue("project")}</span>
+        ),
+    },
+    {
+        accessorKey: "address",
+        header: () => <div className="text-muted-foreground font-medium">Address</div>,
+        cell: ({ row }) => (
+            <span className="text-primary">{row.getValue("address")}</span>
+        ),
+    },
+    {
+        accessorKey: "date",
+        header: () => <div className="text-muted-foreground font-medium">Date</div>,
+        cell: ({ row }) => {
+            const date = row.getValue("date");
+            return (
+                <div className="flex items-center gap-2">
+                    <Image
+                        src="/orders/calender.svg"
+                        alt="Calendar"
+                        width={16}
+                        height={16}
+                    />
+                    <span className="text-primary">{date as string}</span>
+                </div>
+            );
+        },
+    },
     {
         accessorKey: "status",
-        header: "Status",
+        header: () => <div className="text-muted-foreground font-medium">Status</div>,
         cell: ({ row }) => {
             const status = row.getValue("status");
             return (
                 <div
                     className={cn(
-                        `p-1 rounded-md w-max text-sm`,
-                        status === "pending" && "text-yellow-600",
-                        status === "success" && "text-green-500",
-                        status === "failed" && "text-red-500"
+                        `px-2 py-1 rounded-full text-xs font-medium w-max`,
+                        status === "Pending" && " text-[#59A8D4]",
+                        status === "Complete" && " text-[#4AA785]",
+                        status === "In Progress" && " text-[#8A8CD9]",
+                        status === "Approved" && " text-[#FFC555]",
+                        status === "Rejected" && " text-muted-foreground",
                     )}
                 >
-                    {status as string}
+                    ● {status as string}
                 </div>
             );
         },
-
     },
-    {
-        accessorKey: "amount",
-        header: "Amount",
-    },
-
     {
         id: "actions",
         cell: ({ row }) => {
@@ -94,16 +137,12 @@ export const columns: ColumnDef<Payment>[] = [
                             <MoreHorizontal className="h-4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuContent align="start">
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
+                            onClick={() => navigator.clipboard.writeText(payment.orderId)}
                         >
-                            Copy payment ID
+                            Copy order ID
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             );

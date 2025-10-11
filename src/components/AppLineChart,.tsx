@@ -1,6 +1,7 @@
 "use client"
 
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+import { useTheme } from "next-themes"
 
 import {
   Card,
@@ -26,25 +27,38 @@ const data = [
   { name: "Jun", currentWeek: 25, previousWeek: 30 },
 ];
 
-const chartConfig = {
-  currentWeek: { label: "Current Week", color: "#1C1C1C" }, // Using theme variables
-  previousWeek: { label: "Previous Week", color: "#A8C5DA" }, // Using theme variables
-} satisfies ChartConfig
-
 export function AppLineChart() {
+  const { theme } = useTheme()
+  
+  const chartConfig = {
+    currentWeek: { 
+      label: "Current Week", 
+      color: theme === 'dark' ? "#C6C7F8" : "#1C1C1C" 
+    },
+    previousWeek: { 
+      label: "Previous Week", 
+      color: theme === 'dark' ? "#A8C5DA" : "#A8C5DA" 
+    },
+  } satisfies ChartConfig
   return (
     <Card className="bg-transparent border-none shadow-none p-0">
       <CardHeader>
         <CardTitle className="text-lg font-semibold ">Revenue</CardTitle>
         <div className="flex items-center gap-6 mt-2">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#1C1C1C]"></div>
-            <span className="text-sm text-gray-600">Current Week</span>
+            <div 
+              className="w-3 h-3 rounded-full" 
+              style={{ backgroundColor: chartConfig.currentWeek.color }}
+            ></div>
+            <span className="text-sm text-muted-foreground">Current Week</span>
             <span className="font-semibold">$58,211</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#A8C5DA]"></div>
-            <span className="text-sm text-gray-600">Previous Week</span>
+            <div 
+              className="w-3 h-3 rounded-full" 
+              style={{ backgroundColor: chartConfig.previousWeek.color }}
+            ></div>
+            <span className="text-sm text-muted-foreground">Previous Week</span>
             <span className="font-semibold">$68,768</span>
           </div>
         </div>

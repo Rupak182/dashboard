@@ -53,7 +53,7 @@ const chartConfig = {
 
 export function AppPieChart() {
   return (
-    <Card className="flex flex-col bg-transparent border-none shadow-none">
+    <Card className="flex flex-col bg-transparent border-none shadow-none p-0">
       <CardHeader className="items-center pb-0">
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -69,7 +69,7 @@ export function AppPieChart() {
             <Pie 
               data={chartData} 
               dataKey="visitors" 
-              innerRadius={60}
+              innerRadius={40}
               paddingAngle={5}
               cornerRadius={5}
             />

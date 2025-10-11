@@ -54,14 +54,21 @@ export function DataTableToolbar<TData>({
                         <DropdownMenuSeparator />
 
                         {/* Sort options for each column */}
-                        {sortableColumns.map((column) => (
-                            <DropdownMenuItem
-                                key={column.id}
-                                onClick={() => column.toggleSorting()}
-                            >
-                                {column.columnDef.header as string || column.id}
-                            </DropdownMenuItem>
-                        ))}
+                        {sortableColumns.map((column) => {
+                            // Handle function headers by extracting the text or using column id
+                            const headerText = typeof column.columnDef.header === 'function' 
+                                ? column.id.charAt(0).toUpperCase() + column.id.slice(1)
+                                : (column.columnDef.header as string) || column.id;
+                            
+                            return (
+                                <DropdownMenuItem
+                                    key={column.id}
+                                    onClick={() => column.toggleSorting()}
+                                >
+                                    {headerText}
+                                </DropdownMenuItem>
+                            );
+                        })}
 
                         {/* Clear sorting option */}
                         {currentSort && (
@@ -82,9 +89,9 @@ export function DataTableToolbar<TData>({
             <div className="flex  items-center gap-2">
 
                 <InputGroup className="bg-white/40">
-                    <InputGroupInput placeholder="Search" value={(table.getColumn("username")?.getFilterValue() as string) ?? ""}
+                    <InputGroupInput placeholder="Search" value={(table.getColumn("user")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            table.getColumn("username")?.setFilterValue(event.target.value)
+                            table.getColumn("user")?.setFilterValue(event.target.value)
                         }
                     />
                     <InputGroupAddon>

@@ -9,14 +9,15 @@ import { SearchIcon } from 'lucide-react'
 import {AppSidebar} from '@/components/AppSidebar'
 import { Button } from './ui/button'
 import { AppSidebar2 } from './AppSidebar2'
+import { useTheme } from 'next-themes'
 
 export default function Sidebars({
   children
 }: {
   children: React.ReactNode
 }) {
-
-    const [leftOpen, setLeftOpen] = React.useState(false);
+  const { setTheme, theme } = useTheme()
+  const [leftOpen, setLeftOpen] = React.useState(false);
   const [rightOpen, setRightOpen] = React.useState(true);
   return (
     <SidebarProvider open={rightOpen} onOpenChange={setRightOpen}>
@@ -25,39 +26,41 @@ export default function Sidebars({
         <SidebarInset>
            <header className=" sticky-top z-10 border-b px-4 py-5 flex items-center justify-between">
                 <div className="flex shrink-0 grow items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={() => setLeftOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit" width={32} height={32} /></Button>
-                  <Image src="/navbar/star.svg" alt="star" className="w-fit" width={100} height={24} />
+            <Button variant="ghost" size="icon" onClick={() => setLeftOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit dark:invert" width={32} height={32} /></Button>
+                  <Image src="/navbar/star.svg" alt="star" className="w-fit dark:invert" width={100} height={24} />
                   <Breadcrumb>
                     <BreadcrumbList>
                       <BreadcrumbItem>
                         <BreadcrumbLink href="/">Dashboards</BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator>
-                        <Image src="/navbar/slash.svg" alt="slash" className="w-fit py-2 mt-1" width={20} height={20} />
+                        <Image src="/navbar/slash.svg" alt="slash" className="w-fit py-2 mt-1 dark:invert" width={20} height={20} />
                       </BreadcrumbSeparator>
                       <BreadcrumbItem>
-                        <BreadcrumbLink className="text-black font-medium" href="/components">Default</BreadcrumbLink>
+                        <BreadcrumbLink className="text-primary font-medium" href="/components">Default</BreadcrumbLink>
                       </BreadcrumbItem>
                     </BreadcrumbList>
                   </Breadcrumb>
                 </div>
 
-                <div className="flex w-full max-w-xs  gap-6">
-                  <InputGroup>
-                    <InputGroupInput placeholder="Search..." />
+                <div className="flex   gap-6">
+                  <InputGroup className='bg-muted text-muted-foreground'>
+                    <InputGroupInput placeholder="Search..."  className='placeholder:text-muted-foreground'/>
                     <InputGroupAddon >
                       <SearchIcon />
                     </InputGroupAddon>
                     <InputGroupAddon align="inline-end">
-                      <Kbd>⌘</Kbd>
-                      <Kbd>/</Kbd>
+                      <Kbd className='bg-transparent text-lg'>⌘</Kbd>
+                      <Kbd className='bg-transparent text-lg'>/</Kbd>
                     </InputGroupAddon>
                   </InputGroup>
 
-                  <Image src="/navbar/sun.svg" alt="user" className="w-fit" width={32} height={32} />
-                  <Image src="/navbar/timer.svg" alt="timer" className="w-fit" width={32} height={32} />
-                  <Image src="/navbar/bell.svg" alt="bell" className="w-fit" width={32} height={32} />
-                  <Button variant="ghost" size="icon" onClick={() => setRightOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit" width={32} height={32} /></Button>
+                  <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                    <Image src="/navbar/sun.svg" alt="theme toggle" className="w-fit dark:invert" width={32} height={32} />
+                  </Button>
+                  <Image src="/navbar/timer.svg" alt="timer" className="w-fit dark:invert" width={32} height={32} />
+                  <Image src="/navbar/bell.svg" alt="bell" className="w-fit dark:invert" width={32} height={32} />
+                  <Button variant="ghost" size="icon" onClick={() => setRightOpen(prev => !prev)}><Image src="/navbar/side.svg" alt="side" className="w-fit dark:invert" width={32} height={32} /></Button>
                 </div>
               </header>
           <div className="flex justify-between">

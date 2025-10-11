@@ -31,12 +31,12 @@ export default function Home() {
         eCommerce
       </div>
 
-      <div className="grid lg:grid-cols-6 gap-4 mb-20">
+      <div className="grid lg:grid-cols-6 gap-4 mb-20 ">
         <div className=" p-4 rounded-lg col-span-3">
           <div className=" grid grid-cols-2 gap-4  ">
-            <Card className="bg-[#E3F5FF]">
+            <Card className="bg-[#E3F5FF] text-black">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Customers</CardTitle>
+                <CardTitle className="text-sm  font-bold">Customers</CardTitle>
               </CardHeader>
               <CardContent className="flex items-center justify-between">
                 <p className="font-bold text-xl">3,781</p>
@@ -45,10 +45,10 @@ export default function Home() {
                   <span><Image src="/main/ArrowRise.svg" alt="ArrowUp" width={18} height={18} /></span>
                 </span>
               </CardContent>
-            </Card>
-            <Card className="bg-[#F7F9FB] ">
+            </Card >
+            <Card className="bg-[#F7F9FB] text-black ">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Orders</CardTitle>
+                <CardTitle className="text-sm font-bold">Orders</CardTitle>
               </CardHeader>
               <CardContent className="flex items-center justify-between">
                 <p className="font-bold text-xl">1,219</p>
@@ -58,9 +58,9 @@ export default function Home() {
                 </span>
               </CardContent>
             </Card>
-            <Card className="bg-[#F7F9FB]">
+            <Card className="bg-[#F7F9FB] text-black">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Revenue</CardTitle>
+                <CardTitle className="text-sm font-bold">Revenue</CardTitle>
               </CardHeader>
               <CardContent className="flex items-center justify-between">
                 <p className="font-bold text-xl">$695</p>
@@ -70,9 +70,9 @@ export default function Home() {
                 </span>
               </CardContent>
             </Card>
-            <Card className="bg-[#E5ECF6]">
+            <Card className="bg-[#E5ECF6] text-black">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Growth</CardTitle>
+                <CardTitle className="text-sm font-bold">Growth</CardTitle>
               </CardHeader>
               <CardContent className="flex items-center justify-between">
                 <p className="font-bold text-xl">30.1%</p>
@@ -134,11 +134,11 @@ export default function Home() {
           </div>
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+              <TableRow className="">
+                <TableHead className="text-muted-foreground">Name</TableHead>
+                <TableHead className="text-muted-foreground">Price</TableHead>
+                <TableHead className="text-muted-foreground">Quantity</TableHead>
+                <TableHead className="text-muted-foreground text-right" >Amount</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="[&_tr]:border-0">
@@ -175,8 +175,8 @@ export default function Home() {
             </TableBody>
           </Table>
         </div>
-        <div className="bg-primary-foreground p-4 rounded-lg col-span-2">
-          <div className="mb-4">
+        <div className="bg-primary-foreground p-4  rounded-lg col-span-2">
+          <div className="">
             <h3 className="text-lg font-semibold">Total Sales</h3>
           </div>
           <AppPieChart />
