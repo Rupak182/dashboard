@@ -20,18 +20,14 @@ import {
 export const description = "A pie chart with a legend"
 
 const chartData = [
-    { browser: "sponsored", visitors: 154.02, fill: "var(--color-sponsored)" },
-    { browser: "email", visitors: 48.96, fill: "var(--color-email)" },
-      { browser: "affiliate", visitors: 135.18, fill: "var(--color-affiliate)" },
-  { browser: "direct", visitors: 300.56, fill: "var(--color-direct)" },
-
-
+    { channel: "sponsored", visitors: 154.02, fill: "var(--color-sponsored)" },
+    { channel: "email", visitors: 48.96, fill: "var(--color-email)" },
+    { channel: "affiliate", visitors: 135.18, fill: "var(--color-affiliate)" },
+    { channel: "direct", visitors: 300.56, fill: "var(--color-direct)" },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
+ 
   direct: {
     label: "Direct",
     color: "#45E4FF",
@@ -74,7 +70,7 @@ export function AppPieChart() {
               cornerRadius={5}
             />
             <ChartLegend
-              content={<ChartLegendContent nameKey="browser" />}
+              content={<ChartLegendContent nameKey="channel" />}
               className="-translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
             />
           </PieChart>

@@ -56,12 +56,12 @@ export function DataTable<TData, TValue>({
 
 
     return (
-        <div className="overflow-hidden rounded-md  ">
+        <div className="w-full">
             <div className="bg-secondary p-2">
                 <DataTableToolbar table={table} />
             </div>
-            <div className="overflow-auto ">
-                <Table>
+            <div className="overflow-x-auto">
+                <Table className="min-w-[850px]">
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>

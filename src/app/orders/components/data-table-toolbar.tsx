@@ -27,7 +27,7 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
     // Get sortable columns
     const sortableColumns = table.getAllColumns().filter(column =>
-        column.getCanSort() && column.id !== 'select' && column.id !== 'actions'
+        column.getCanSort() && column.id !== 'select' && column.id !== 'actions' && column.id !== 'date'
     )
 
     const sorting = table.getState().sorting

@@ -70,10 +70,10 @@ async function getData(): Promise<Payment[]> {
   return data;
 }
 
-export default async function DemoPage() {
+export default async function OrdersPage() {
   const data = await getData()
   return (
-    <div className="m-8 rounded-md">
+    <div className="m-8 rounded-md p-6 lg:max-w-7xl md:max-w-4xl mx-auto">
       <div className="p-2">
         <h1 className="font-semibold">All Orders</h1>
       </div>

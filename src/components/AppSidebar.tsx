@@ -31,9 +31,9 @@ const dashboardItems = [
     },
     {
         title: "eCommerce",
-        url: "/#",
+        url: "/orders",
         icon: "/sidebar/ecom.svg",
-        hasChildren: true,
+        hasChildren: false,
     },
     {
         title: "Projects",

@@ -22,7 +22,7 @@ export default function AppMap() {
                   <span>{location.city}</span>
                   <span>{location.value}K</span>
                 </Label>
-                <Progress value={location.value} className="h-1" />
+                <Progress value={location.value} className="h-1 " />
               </div>
             ))}
           </div>

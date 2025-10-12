@@ -111,7 +111,7 @@ export const columns: ColumnDef<Payment>[] = [
             return (
                 <div
                     className={cn(
-                        `px-2 py-1 rounded-full text-xs font-medium w-max`,
+                        `px-2 py-1 rounded-full text-sm font-medium w-max`,
                         status === "Pending" && " text-[#59A8D4]",
                         status === "Complete" && " text-[#4AA785]",
                         status === "In Progress" && " text-[#8A8CD9]",

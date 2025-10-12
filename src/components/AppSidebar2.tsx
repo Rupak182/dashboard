@@ -16,7 +16,7 @@ const notifications = [
   {
     id: 1,
     icon: "/notification/BugBeetle.svg",
-    title: "You have bug that needs...",
+    title: "You have a bug that needs to be fixed.",
     time: "12 hours ago",
     bgColor: "bg-[#E3F5FF]"
   },
@@ -31,8 +31,8 @@ const notifications = [
   {
     id: 3,
     icon: "/notification/BugBeetle.svg",
-    title: "You have bug that needs...",
-    time: "Just Now",
+    title: "You have a bug that needs to be fixed.",
+    time: "Just now",
     bgColor: "bg-[#E3F5FF]"
   },
   {
@@ -49,7 +49,7 @@ const activities = [
   {
     id: 1,
     avatar: "/notification/p1.png",
-    title: "You have bug that needs...",
+    title: "You have a bug that needs to be fixed.",
     time: "Just now"
   },
   {
@@ -106,8 +106,8 @@ export function AppSidebar2() {
                         <Image src={notification.icon} alt="notification" width={40} height={40} className="w-fit" />
                       </div>
                     </div>
-                    <div>
-                      <div className="text-sm">{notification.title}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm truncate">{notification.title}</div>
                       <div className="text-sm text-muted-foreground">{notification.time}</div>
                     </div>
                   </div>
@@ -126,8 +126,8 @@ export function AppSidebar2() {
                 <SidebarMenuItem key={activity.id}>
                   <div className="flex items-center gap-3">
                     <Image src={activity.avatar} alt="user" width={40} height={40} className="w-6" />
-                    <div>
-                      <div className="text-sm">{activity.title}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm truncate">{activity.title}</div>
                       <div className="text-sm text-muted-foreground">{activity.time}</div>
                     </div>
                   </div>
