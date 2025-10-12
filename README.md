@@ -6,9 +6,8 @@ A dashboard built with Next.js 15, React 19, and Tailwind CSS featuring dark/lig
 ## Tech Stack
 
 - **Framework:** Next.js 15, React 19, TypeScript
-- **Styling:** Tailwind CSS 4, Radix UI
+- **Styling:** Tailwind CSS 4
 - **Charts:** Recharts
-- **Icons:** Lucide React
 
 ## Installation
 
