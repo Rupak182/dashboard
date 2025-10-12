@@ -78,7 +78,7 @@ dashboard/
 ### Challenges & Solutions
 - **Sidebars:** Default Sidebar component of shadcn doesn't support two sidebars at the same time, so I had to customize the default sidebar so that both right and left sidebars work properly. This GitHub issue helped me to do the necessary modifications: https://github.com/shadcn-ui/ui/issues/5834
 
-- **Charts:** Charts like line chart and pie chart are not replicated exactly as in the design.One of the reason was the unavailability of exact data points. I tried to make them resemble the design by using custom data points.
+- **Charts:** Charts like line chart and pie chart are not replicated exactly as in the design. One of the reasons was the unavailability of exact data points. I tried to make them resemble the design by using custom data points.
 
 
 ## Scripts
