@@ -20,7 +20,7 @@ export default function Sidebars({
   const { setTheme, theme } = useTheme()
   const pathname = usePathname()
   const [leftOpen, setLeftOpen] = React.useState(false);
-  const [rightOpen, setRightOpen] = React.useState(true);
+  const [rightOpen, setRightOpen] = React.useState(false);
 
   // Get the current page name based on pathname
   const getCurrentPageName = () => {
