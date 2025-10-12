@@ -66,7 +66,7 @@ export const columns: ColumnDef<Payment>[] = [
                         height={32}
                         className="rounded-full"
                     />
-                    <span className="text-primary font-medium">{user as string}</span>
+                    <span className="text-primary ">{user as string}</span>
                 </div>
             );
         },
