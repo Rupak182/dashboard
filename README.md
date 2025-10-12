@@ -65,6 +65,22 @@ dashboard/
 └── tsconfig.json              # TypeScript configuration
 ```
 
+## Design Decisions & Development Notes
+
+### Architecture
+- **Component Structure:** Modular design with reusable UI components using shadcn/ui
+- **Data Tables:** TanStack Table for sorting, filtering, and pagination
+- **Theming:** Centralized dark/light theme management with next-themes
+- **Pages:** Contains two pages - a home page and an orders page navigatable via left sidebar menu options
+
+
+
+### Challenges & Solutions
+- **Sidebars:** Default Sidebar component of shadcn doesn't support two sidebars at the same time, so I had to customize the default sidebar so that both right and left sidebars work properly. This GitHub issue helped me to do the necessary modifications: https://github.com/shadcn-ui/ui/issues/5834
+
+- **Charts:** Charts like line chart and pie chart are not replicated exactly as in the design. The major reason was the unavailability of exact data points. I tried to make them resemble the design by using custom data points.
+
+
 ## Scripts
 
 - `npm run dev` - Start development server
