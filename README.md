@@ -9,8 +9,6 @@ A dashboard built with Next.js 15, React 19, and Tailwind CSS featuring dark/lig
 - **Styling:** Tailwind CSS 4
 - **Charts:** Recharts
 
-> **Note:** Uses React 19 experimental compiler for possibly better performance.
-
 ## Installation
 
 ```bash

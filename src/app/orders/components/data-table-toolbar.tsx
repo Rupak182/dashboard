@@ -32,10 +32,6 @@ export function DataTableToolbar<TData>({
 
     const sorting = table.getState().sorting
     const currentSort = sorting.length > 0 ? sorting[0] : null
-    const hasSorting = sorting.length > 0
-
-    // Debug log to check sorting state
-    console.log('Sorting state:', { sorting, hasSorting, sortingLength: sorting.length })
 
     return (
         <div className="flex items-center  justify-between">
@@ -75,19 +71,19 @@ export function DataTableToolbar<TData>({
                         })}
 
                         {/* Clear sorting option */}
-                        <DropdownMenuSeparator />
-                        {/* bug ->doesn't work with hasSorting */}
-                            <DropdownMenuItem
-                                onClick={() => table.resetSorting()}
-                                className="text-muted-foreground"
-                            >
-                                Clear sorting
-                            </DropdownMenuItem>
-                        
+                        {currentSort && (
+                            <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    onClick={() => table.resetSorting()}
+                                    className="text-muted-foreground"
+                                >
+                                    Clear sorting
+                                </DropdownMenuItem>
+                            </>
+                        )}
                     </DropdownMenuContent>
                 </DropdownMenu>
-
-             
             </div>
 
             <div className="flex  items-center gap-2">
