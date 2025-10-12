@@ -75,7 +75,7 @@ export const columns: ColumnDef<Payment>[] = [
         accessorKey: "project",
         header: () => <div className="text-muted-foreground font-medium">Project</div>,
         cell: ({ row }) => (
-            <span className="text-gray-900">{row.getValue("project")}</span>
+            <span className="text-primary">{row.getValue("project")}</span>
         ),
     },
     {
