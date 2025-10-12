@@ -55,7 +55,7 @@ export default function AppTable() {
             <TableBody className="[&_tr]:border-0">
               {topProducts.map((product) => (
                 <TableRow key={product.id}>
-                  <TableCell className="font-medium">{product.name}</TableCell>
+                  <TableCell>{product.name}</TableCell>
                   <TableCell>{product.price}</TableCell>
                   <TableCell>{product.quantity}</TableCell>
                   <TableCell className="text-right">{product.amount}</TableCell>
