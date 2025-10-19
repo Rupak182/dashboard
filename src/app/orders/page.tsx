@@ -78,6 +78,9 @@ export default async function OrdersPage() {
         <h1 className="font-semibold">All Orders</h1>
       </div>
       <DataTable columns={columns} data={data}/>
+       <footer className="text-center mt-10 text-sm text-gray-500">
+        This dashboard design is based on <a href="https://snowui.byewind.com/" className="text-blue-500 underline">SnowUI Designs</a>. Visit their website for more such designs.
+      </footer>
     </div>
   )
 }

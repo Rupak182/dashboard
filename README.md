@@ -88,3 +88,7 @@ dashboard/
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
+## Acknowledgments
+
+This dashboard design is based on [SnowUI Designs](https://snowui.byewind.com/). Visit their website for more such designs.
+

@@ -1,5 +1,3 @@
-
-
 import { AppBarChart } from "@/components/AppBarChart";
 import { AppLineChart } from "@/components/AppLineChart";
 
@@ -46,6 +44,10 @@ export default function Home() {
           <AppPieChart />
         </div>
       </div>
+
+      <footer className="text-center mt-4 text-sm text-gray-500">
+        This dashboard design is based on <a href="https://snowui.byewind.com/" className="text-blue-500 underline">SnowUI Designs</a>. Visit their website for more such designs.
+      </footer>
     </div>
   );
 }
